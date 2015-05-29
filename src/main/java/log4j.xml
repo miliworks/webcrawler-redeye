@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- <param name="ConversionPattern" value="%d %-5p: %c - %m%n" />-->
+			<param name="ConversionPattern" value="%d %-5p: %c - %m%n" />
+		</layout>
+
+		<!--限制输出级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="TRACE" />
+		</filter>
+	</appender>
+
+	<appender name="file" class="org.apache.log4j.FileAppender">
+		<param name="File" value="log4j.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="com.aoapp.test.crawler">
+		<level value="debug" />
+	</logger>
+	
+	
+
+	<!-- 3rdparty Loggers -->
+	<logger name="edu.uci.ics.crawler4j">
+		<level value="error" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="error" />
+		<appender-ref ref="console" />
+		<!-- <appender-ref ref="file" />  -->
+	</root>
+
+</log4j:configuration>
